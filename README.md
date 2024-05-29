@@ -56,24 +56,24 @@ graph LR
 ```
 ## Biểu đồ luồng dữ liệu
 ```
-graph LR
+flowchart LR
     %% Đầu cuối
-    A1[Người dùng] -->|Tạo/Yêu cầu kho lưu trữ| P1[Quản lý kho lưu trữ]
-    A1 -->|Tạo/Yêu cầu phiên bản| P2[Quản lý phiên bản]
-    A1 -->|Tạo/Yêu cầu nhánh| P3[Quản lý nhánh]
-    A1 -->|Hợp nhất nhánh| P4[Quản lý hợp nhất]
-    A1 -->|Yêu cầu quyền truy cập| P5[Quản lý người dùng]
+    A1[Người dùng] -->|Tạo/Yêu cầu kho lưu trữ| P1((Quản lý kho lưu trữ))
+    A1 -->|Tạo/Yêu cầu phiên bản| P2((Quản lý phiên bản))
+    A1 -->|Tạo/Yêu cầu nhánh| P3((Quản lý nhánh))
+    A1 -->|Hợp nhất nhánh| P4((Quản lý hợp nhất))
+    A1 -->|Yêu cầu quyền truy cập| P5((Quản lý người dùng))
 
     %% Xử lý
-    P1 -->|Tạo kho lưu trữ mới| D1[Kho lưu trữ]
+    P1 -->|Tạo kho lưu trữ mới| D1[(Kho lưu trữ)]
     P1 -->|Sao chép/Đồng bộ dữ liệu| D1
-    P2 -->|Tạo phiên bản mới| D2[Phiên bản]
+    P2 -->|Tạo phiên bản mới| D2[(Phiên bản)]
     P2 -->|Chuyển đổi phiên bản| D2
     P2 -->|Theo dõi thay đổi| D2
-    P3 -->|Tạo/Xóa/Chuyển đổi nhánh| D3[Nhánh]
+    P3 -->|Tạo/Xóa/Chuyển đổi nhánh| D3[(Nhánh)]
     P4 -->|Hợp nhất nhánh| D3
     P4 -->|Giải quyết xung đột| D3
-    P5 -->|Quản lý thông tin người dùng| D4[Thông tin người dùng]
+    P5 -->|Quản lý thông tin người dùng| D4[(Thông tin người dùng)]
     P5 -->|Quản lý quyền truy cập| D4
     P5 -->|Theo dõi hoạt động người dùng| D4
 
@@ -83,33 +83,26 @@ graph LR
     D3 -->|Dữ liệu nhánh| P3
     D3 -->|Dữ liệu nhánh hợp nhất| P4
     D4 -->|Thông tin người dùng| P5
-
-    %% Các kho dữ liệu
-    classDef dataStore stroke:#333,stroke-width:2px;
-    D1:::dataStore
-    D2:::dataStore
-    D3:::dataStore
-    D4:::dataStore
 ```
 ```mermaid
-graph LR
+flowchart LR
     %% Đầu cuối
-    A1[Người dùng] -->|Tạo/Yêu cầu kho lưu trữ| P1[Quản lý kho lưu trữ]
-    A1 -->|Tạo/Yêu cầu phiên bản| P2[Quản lý phiên bản]
-    A1 -->|Tạo/Yêu cầu nhánh| P3[Quản lý nhánh]
-    A1 -->|Hợp nhất nhánh| P4[Quản lý hợp nhất]
-    A1 -->|Yêu cầu quyền truy cập| P5[Quản lý người dùng]
+    A1[Người dùng] -->|Tạo/Yêu cầu kho lưu trữ| P1((Quản lý kho lưu trữ))
+    A1 -->|Tạo/Yêu cầu phiên bản| P2((Quản lý phiên bản))
+    A1 -->|Tạo/Yêu cầu nhánh| P3((Quản lý nhánh))
+    A1 -->|Hợp nhất nhánh| P4((Quản lý hợp nhất))
+    A1 -->|Yêu cầu quyền truy cập| P5((Quản lý người dùng))
 
     %% Xử lý
-    P1 -->|Tạo kho lưu trữ mới| D1[Kho lưu trữ]
+    P1 -->|Tạo kho lưu trữ mới| D1[(Kho lưu trữ)]
     P1 -->|Sao chép/Đồng bộ dữ liệu| D1
-    P2 -->|Tạo phiên bản mới| D2[Phiên bản]
+    P2 -->|Tạo phiên bản mới| D2[(Phiên bản)]
     P2 -->|Chuyển đổi phiên bản| D2
     P2 -->|Theo dõi thay đổi| D2
-    P3 -->|Tạo/Xóa/Chuyển đổi nhánh| D3[Nhánh]
+    P3 -->|Tạo/Xóa/Chuyển đổi nhánh| D3[(Nhánh)]
     P4 -->|Hợp nhất nhánh| D3
     P4 -->|Giải quyết xung đột| D3
-    P5 -->|Quản lý thông tin người dùng| D4[Thông tin người dùng]
+    P5 -->|Quản lý thông tin người dùng| D4[(Thông tin người dùng)]
     P5 -->|Quản lý quyền truy cập| D4
     P5 -->|Theo dõi hoạt động người dùng| D4
 
@@ -119,13 +112,6 @@ graph LR
     D3 -->|Dữ liệu nhánh| P3
     D3 -->|Dữ liệu nhánh hợp nhất| P4
     D4 -->|Thông tin người dùng| P5
-
-    %% Các kho dữ liệu
-    classDef dataStore stroke:#333,stroke-width:2px;
-    D1:::dataStore
-    D2:::dataStore
-    D3:::dataStore
-    D4:::dataStore
 ```
 ## Mô hình thực thể kết hợp
 ```
