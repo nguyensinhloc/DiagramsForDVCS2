@@ -54,7 +54,42 @@ graph LR
     B5 --> C13[Quản lý thông tin người dùng]
     B5 --> C14[Theo dõi hoạt động người dùng]
 ```
-## Biểu đồ luồng dữ liệu
+## Biểu đồ luồng dữ liệu (mức ngữ cảnh)
+```
+flowchart LR
+    %% Đầu cuối
+    A1[Người dùng] -->|Tương tác với hệ thống| P1((Hệ thống quản lý phiên bản phân tán))
+
+    %% Xử lý
+    P1 -->|Truy cập kho lưu trữ| D1[(Kho lưu trữ)]
+    P1 -->|Truy cập phiên bản| D2[(Phiên bản)]
+    P1 -->|Truy cập nhánh| D3[(Nhánh)]
+    P1 -->|Quản lý người dùng| D4[(Thông tin người dùng)]
+
+    %% Luồng dữ liệu
+    D1 -->|Dữ liệu kho lưu trữ| P1
+    D2 -->|Dữ liệu phiên bản| P1
+    D3 -->|Dữ liệu nhánh| P1
+    D4 -->|Thông tin người dùng| P1
+```
+```mermaid
+flowchart LR
+    %% Đầu cuối
+    A1[Người dùng] -->|Tương tác với hệ thống| P1((Hệ thống quản lý phiên bản phân tán))
+
+    %% Xử lý
+    P1 -->|Truy cập kho lưu trữ| D1[(Kho lưu trữ)]
+    P1 -->|Truy cập phiên bản| D2[(Phiên bản)]
+    P1 -->|Truy cập nhánh| D3[(Nhánh)]
+    P1 -->|Quản lý người dùng| D4[(Thông tin người dùng)]
+
+    %% Luồng dữ liệu
+    D1 -->|Dữ liệu kho lưu trữ| P1
+    D2 -->|Dữ liệu phiên bản| P1
+    D3 -->|Dữ liệu nhánh| P1
+    D4 -->|Thông tin người dùng| P1
+```
+## Biểu đồ luồng dữ liệu (mức đỉnh)
 ```
 flowchart LR
     %% Đầu cuối
@@ -111,6 +146,138 @@ flowchart LR
     D2 -->|Dữ liệu phiên bản| P2
     D3 -->|Dữ liệu nhánh| P3
     D3 -->|Dữ liệu nhánh hợp nhất| P4
+    D4 -->|Thông tin người dùng| P5
+```
+## Biểu đồ luồng dữ liệu (mức dưới đỉnh)
+### Quản lý kho lưu trữ
+```
+flowchart LR
+    %% Đầu cuối
+    A1[Người dùng] -->|Tạo/Yêu cầu kho lưu trữ| P1((Quản lý kho lưu trữ))
+
+    %% Xử lý
+    P1 -->|Tạo kho lưu trữ mới| D1[(Kho lưu trữ)]
+    P1 -->|Sao chép/Đồng bộ dữ liệu| D1
+
+    %% Luồng dữ liệu
+    D1 -->|Dữ liệu kho lưu trữ| P1
+```
+```mermaid
+flowchart LR
+    %% Đầu cuối
+    A1[Người dùng] -->|Tạo/Yêu cầu kho lưu trữ| P1((Quản lý kho lưu trữ))
+
+    %% Xử lý
+    P1 -->|Tạo kho lưu trữ mới| D1[(Kho lưu trữ)]
+    P1 -->|Sao chép/Đồng bộ dữ liệu| D1
+
+    %% Luồng dữ liệu
+    D1 -->|Dữ liệu kho lưu trữ| P1
+```
+### Quản lý phiên bản
+```
+flowchart LR
+    %% Đầu cuối
+    A1[Người dùng] -->|Tạo/Yêu cầu phiên bản| P2((Quản lý phiên bản))
+
+    %% Xử lý
+    P2 -->|Tạo phiên bản mới| D2[(Phiên bản)]
+    P2 -->|Chuyển đổi phiên bản| D2
+    P2 -->|Theo dõi thay đổi| D2
+
+    %% Luồng dữ liệu
+    D2 -->|Dữ liệu phiên bản| P2
+```
+```mermaid
+flowchart LR
+    %% Đầu cuối
+    A1[Người dùng] -->|Tạo/Yêu cầu phiên bản| P2((Quản lý phiên bản))
+
+    %% Xử lý
+    P2 -->|Tạo phiên bản mới| D2[(Phiên bản)]
+    P2 -->|Chuyển đổi phiên bản| D2
+    P2 -->|Theo dõi thay đổi| D2
+
+    %% Luồng dữ liệu
+    D2 -->|Dữ liệu phiên bản| P2
+```
+### Quản lý nhánh
+```
+flowchart LR
+    %% Đầu cuối
+    A1[Người dùng] -->|Tạo/Yêu cầu nhánh| P3((Quản lý nhánh))
+
+    %% Xử lý
+    P3 -->|Tạo nhánh mới| D3[(Nhánh)]
+    P3 -->|Xóa nhánh| D3
+    P3 -->|Chuyển đổi nhánh| D3
+
+    %% Luồng dữ liệu
+    D3 -->|Dữ liệu nhánh| P3
+```
+```mermaid
+flowchart LR
+    %% Đầu cuối
+    A1[Người dùng] -->|Tạo/Yêu cầu nhánh| P3((Quản lý nhánh))
+
+    %% Xử lý
+    P3 -->|Tạo nhánh mới| D3[(Nhánh)]
+    P3 -->|Xóa nhánh| D3
+    P3 -->|Chuyển đổi nhánh| D3
+
+    %% Luồng dữ liệu
+    D3 -->|Dữ liệu nhánh| P3
+```
+### Quản lý hợp nhất
+```
+flowchart LR
+    %% Đầu cuối
+    A1[Người dùng] -->|Hợp nhất nhánh| P4((Quản lý hợp nhất))
+
+    %% Xử lý
+    P4 -->|Hợp nhất nhánh| D3[(Nhánh)]
+    P4 -->|Giải quyết xung đột| D3
+
+    %% Luồng dữ liệu
+    D3 -->|Dữ liệu nhánh hợp nhất| P4
+```
+```mermaid
+flowchart LR
+    %% Đầu cuối
+    A1[Người dùng] -->|Hợp nhất nhánh| P4((Quản lý hợp nhất))
+
+    %% Xử lý
+    P4 -->|Hợp nhất nhánh| D3[(Nhánh)]
+    P4 -->|Giải quyết xung đột| D3
+
+    %% Luồng dữ liệu
+    D3 -->|Dữ liệu nhánh hợp nhất| P4
+```
+### Quản lý người dùng
+```
+flowchart LR
+    %% Đầu cuối
+    A1[Người dùng] -->|Yêu cầu quyền truy cập| P5((Quản lý người dùng))
+
+    %% Xử lý
+    P5 -->|Quản lý thông tin người dùng| D4[(Thông tin người dùng)]
+    P5 -->|Quản lý quyền truy cập| D4
+    P5 -->|Theo dõi hoạt động người dùng| D4
+
+    %% Luồng dữ liệu
+    D4 -->|Thông tin người dùng| P5
+```
+```mermaid
+flowchart LR
+    %% Đầu cuối
+    A1[Người dùng] -->|Yêu cầu quyền truy cập| P5((Quản lý người dùng))
+
+    %% Xử lý
+    P5 -->|Quản lý thông tin người dùng| D4[(Thông tin người dùng)]
+    P5 -->|Quản lý quyền truy cập| D4
+    P5 -->|Theo dõi hoạt động người dùng| D4
+
+    %% Luồng dữ liệu
     D4 -->|Thông tin người dùng| P5
 ```
 ## Mô hình thực thể kết hợp
