@@ -417,3 +417,128 @@ erDiagram
     NGUOIDUNG ||--o{ HOATDONG : "thực hiện"
     KHO ||--o{ HOATDONG : "liên quan"
 ```
+## Lưu đồ giải thuật
+```
+flowchart LR
+    %% Đầu cuối
+    A0((Bắt đầu))
+
+    %% Quyết định yêu cầu người dùng
+    A0 --> B1{Người dùng yêu cầu gì?}
+    B1 -->|Tạo/Yêu cầu kho lưu trữ| C1[Quản lý kho lưu trữ]
+    B1 -->|Tạo/Yêu cầu phiên bản| C2[Quản lý phiên bản]
+    B1 -->|Tạo/Yêu cầu nhánh| C3[Quản lý nhánh]
+    B1 -->|Hợp nhất nhánh| C4[Quản lý hợp nhất]
+    B1 -->|Yêu cầu quyền truy cập| C5[Quản lý người dùng]
+
+    %% Xử lý Quản lý kho lưu trữ
+    C1 --> D1{Yêu cầu kho lưu trữ là gì?}
+    D1 -->|Tạo kho lưu trữ mới| E1[Tạo kho lưu trữ mới]
+    D1 -->|Sao chép/Đồng bộ dữ liệu| E2[Sao chép/Đồng bộ dữ liệu]
+    E1 --> F1[(Kho lưu trữ)]
+    E2 --> F1
+    F1 --> G1((Kết thúc))
+
+    %% Xử lý Quản lý phiên bản
+    C2 --> D2{Yêu cầu phiên bản là gì?}
+    D2 -->|Tạo phiên bản mới| E3[Tạo phiên bản mới]
+    D2 -->|Chuyển đổi phiên bản| E4[Chuyển đổi phiên bản]
+    D2 -->|Theo dõi thay đổi| E5[Theo dõi thay đổi]
+    E3 --> F2[(Phiên bản)]
+    E4 --> F2
+    E5 --> F2
+    F2 --> G1
+
+    %% Xử lý Quản lý nhánh
+    C3 --> D3{Yêu cầu nhánh là gì?}
+    D3 -->|Tạo nhánh mới| E6[Tạo nhánh mới]
+    D3 -->|Xóa nhánh| E7[Xóa nhánh]
+    D3 -->|Chuyển đổi nhánh| E8[Chuyển đổi nhánh]
+    E6 --> F3[(Nhánh)]
+    E7 --> F3
+    E8 --> F3
+    F3 --> G1
+
+    %% Xử lý Quản lý hợp nhất
+    C4 --> D4{Yêu cầu hợp nhất là gì?}
+    D4 -->|Hợp nhất nhánh| E9[Hợp nhất nhánh]
+    D4 -->|Giải quyết xung đột| E10[Giải quyết xung đột]
+    E9 --> F4[(Nhánh hợp nhất)]
+    E10 --> F4
+    F4 --> G1
+
+    %% Xử lý Quản lý người dùng
+    C5 --> D5{Yêu cầu quyền truy cập là gì?}
+    D5 -->|Quản lý thông tin người dùng| E11[Quản lý thông tin người dùng]
+    D5 -->|Quản lý quyền truy cập| E12[Quản lý quyền truy cập]
+    D5 -->|Theo dõi hoạt động người dùng| E13[Theo dõi hoạt động người dùng]
+    E11 --> F5[(Thông tin người dùng)]
+    E12 --> F5
+    E13 --> F5
+    F5 --> G1
+
+    %% Kết thúc
+    G1 --> H0((Kết thúc))
+```
+```mermaid
+flowchart LR
+    %% Đầu cuối
+    A0((Bắt đầu))
+
+    %% Quyết định yêu cầu người dùng
+    A0 --> B1{Người dùng yêu cầu gì?}
+    B1 -->|Tạo/Yêu cầu kho lưu trữ| C1[Quản lý kho lưu trữ]
+    B1 -->|Tạo/Yêu cầu phiên bản| C2[Quản lý phiên bản]
+    B1 -->|Tạo/Yêu cầu nhánh| C3[Quản lý nhánh]
+    B1 -->|Hợp nhất nhánh| C4[Quản lý hợp nhất]
+    B1 -->|Yêu cầu quyền truy cập| C5[Quản lý người dùng]
+
+    %% Xử lý Quản lý kho lưu trữ
+    C1 --> D1{Yêu cầu kho lưu trữ là gì?}
+    D1 -->|Tạo kho lưu trữ mới| E1[Tạo kho lưu trữ mới]
+    D1 -->|Sao chép/Đồng bộ dữ liệu| E2[Sao chép/Đồng bộ dữ liệu]
+    E1 --> F1[(Kho lưu trữ)]
+    E2 --> F1
+    F1 --> G1((Kết thúc))
+
+    %% Xử lý Quản lý phiên bản
+    C2 --> D2{Yêu cầu phiên bản là gì?}
+    D2 -->|Tạo phiên bản mới| E3[Tạo phiên bản mới]
+    D2 -->|Chuyển đổi phiên bản| E4[Chuyển đổi phiên bản]
+    D2 -->|Theo dõi thay đổi| E5[Theo dõi thay đổi]
+    E3 --> F2[(Phiên bản)]
+    E4 --> F2
+    E5 --> F2
+    F2 --> G1
+
+    %% Xử lý Quản lý nhánh
+    C3 --> D3{Yêu cầu nhánh là gì?}
+    D3 -->|Tạo nhánh mới| E6[Tạo nhánh mới]
+    D3 -->|Xóa nhánh| E7[Xóa nhánh]
+    D3 -->|Chuyển đổi nhánh| E8[Chuyển đổi nhánh]
+    E6 --> F3[(Nhánh)]
+    E7 --> F3
+    E8 --> F3
+    F3 --> G1
+
+    %% Xử lý Quản lý hợp nhất
+    C4 --> D4{Yêu cầu hợp nhất là gì?}
+    D4 -->|Hợp nhất nhánh| E9[Hợp nhất nhánh]
+    D4 -->|Giải quyết xung đột| E10[Giải quyết xung đột]
+    E9 --> F4[(Nhánh hợp nhất)]
+    E10 --> F4
+    F4 --> G1
+
+    %% Xử lý Quản lý người dùng
+    C5 --> D5{Yêu cầu quyền truy cập là gì?}
+    D5 -->|Quản lý thông tin người dùng| E11[Quản lý thông tin người dùng]
+    D5 -->|Quản lý quyền truy cập| E12[Quản lý quyền truy cập]
+    D5 -->|Theo dõi hoạt động người dùng| E13[Theo dõi hoạt động người dùng]
+    E11 --> F5[(Thông tin người dùng)]
+    E12 --> F5
+    E13 --> F5
+    F5 --> G1
+
+    %% Kết thúc
+    G1 --> H0((Kết thúc))
+```
