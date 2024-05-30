@@ -542,3 +542,89 @@ flowchart LR
     %% Kết thúc
     G1 --> H0((Kết thúc))
 ```
+## Mô hình quan hệ dữ liệu
+```
+-- Tạo cơ sở dữ liệu
+CREATE DATABASE HeThongQuanLyPhienBan;
+GO
+
+-- Sử dụng cơ sở dữ liệu
+USE HeThongQuanLyPhienBan;
+GO
+
+-- Tạo bảng NGUOIDUNG
+CREATE TABLE NGUOIDUNG (
+    nguoidung_id INT PRIMARY KEY IDENTITY(1,1),
+    tennguoidung NVARCHAR(255) NOT NULL,
+    email NVARCHAR(255) NOT NULL,
+    matkhau NVARCHAR(255) NOT NULL,
+    vaitro NVARCHAR(50) NOT NULL
+);
+GO
+
+-- Tạo bảng KHO
+CREATE TABLE KHO (
+    kho_id INT PRIMARY KEY IDENTITY(1,1),
+    ten NVARCHAR(255) NOT NULL,
+    mota NVARCHAR(MAX),
+    chu_id INT NOT NULL,
+    FOREIGN KEY (chu_id) REFERENCES NGUOIDUNG(nguoidung_id)
+);
+GO
+
+-- Tạo bảng PHIENBAN
+CREATE TABLE PHIENBAN (
+    phienban_id INT PRIMARY KEY IDENTITY(1,1),
+    ten NVARCHAR(255) NOT NULL,
+    ngaytao DATE NOT NULL,
+    kho_id INT NOT NULL,
+    FOREIGN KEY (kho_id) REFERENCES KHO(kho_id)
+);
+GO
+
+-- Tạo bảng NHANH
+CREATE TABLE NHANH (
+    nhanh_id INT PRIMARY KEY IDENTITY(1,1),
+    ten NVARCHAR(255) NOT NULL,
+    kho_id INT NOT NULL,
+    phienban_goc_id INT NOT NULL,
+    FOREIGN KEY (kho_id) REFERENCES KHO(kho_id),
+    FOREIGN KEY (phienban_goc_id) REFERENCES PHIENBAN(phienban_id)
+);
+GO
+
+-- Tạo bảng HOPNHAT
+CREATE TABLE HOPNHAT (
+    hopnhat_id INT PRIMARY KEY IDENTITY(1,1),
+    nhanh_nguon_id INT NOT NULL,
+    nhanh_dich_id INT NOT NULL,
+    ngayhopnhat DATE NOT NULL,
+    trangthai NVARCHAR(50) NOT NULL,
+    FOREIGN KEY (nhanh_nguon_id) REFERENCES NHANH(nhanh_id),
+    FOREIGN KEY (nhanh_dich_id) REFERENCES NHANH(nhanh_id)
+);
+GO
+
+-- Tạo bảng QUYEN
+CREATE TABLE QUYEN (
+    quyen_id INT PRIMARY KEY IDENTITY(1,1),
+    nguoidung_id INT NOT NULL,
+    kho_id INT NOT NULL,
+    quyenhan NVARCHAR(50) NOT NULL,
+    FOREIGN KEY (nguoidung_id) REFERENCES NGUOIDUNG(nguoidung_id),
+    FOREIGN KEY (kho_id) REFERENCES KHO(kho_id)
+);
+GO
+
+-- Tạo bảng HOATDONG
+CREATE TABLE HOATDONG (
+    hoatdong_id INT PRIMARY KEY IDENTITY(1,1),
+    nguoidung_id INT NOT NULL,
+    hanhdong NVARCHAR(255) NOT NULL,
+    thoigian DATE NOT NULL,
+    kho_id INT NOT NULL,
+    FOREIGN KEY (nguoidung_id) REFERENCES NGUOIDUNG(nguoidung_id),
+    FOREIGN KEY (kho_id) REFERENCES KHO(kho_id)
+);
+GO
+```
